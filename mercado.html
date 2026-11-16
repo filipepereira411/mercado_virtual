@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0b6e99"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><title>Mercado Virtual – Salmão e Pneus</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1c2430;--mu:#667085;--ac:#0b6e99;--bd:#e1e5ea;--ok:#177245;--er:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#12161c;--card:#1b212a;--tx:#e8ecf1;--mu:#9aa5b4;--ac:#4cb3e0;--bd:#2b3441;--ok:#4cc38a;--er:#f97066}}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:calc(12px + env(safe-area-inset-top,0px)) 20px 12px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:5}
+h1{font-size:1.2rem;margin:0}nav,.hb{display:flex;gap:6px;flex-wrap:wrap}
+nav a{padding:6px 12px;border-radius:8px;text-decoration:none;color:var(--tx);border:1px solid var(--bd);font-size:.9rem}nav a.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:1000px;margin:0 auto;padding:20px}h2{margin:24px 0 12px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.c,.box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.c{display:flex;flex-direction:column;gap:6px}.e{font-size:2.4rem}.c h3{margin:0;font-size:1rem}.c p{margin:0;color:var(--mu);font-size:.85rem;flex:1}.pr{font-weight:700;font-size:1.1rem}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:8px 12px;background:var(--ac);color:#fff}
+button.s{background:transparent;color:var(--tx);border:1px solid var(--bd);padding:3px 9px}button.d{background:var(--er);color:#fff;border:0}
+input,select{font:inherit;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);width:100%;margin:4px 0}
+label{font-size:.85rem;color:var(--mu)}
+aside{position:fixed;top:0;right:0;height:100%;width:min(360px,100%);background:var(--card);border-left:1px solid var(--bd);padding:18px;transform:translateX(100%);transition:.25s;z-index:10;display:flex;flex-direction:column;gap:10px;overflow:auto}aside.o{transform:none}
+.l{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--bd);padding:8px 0;font-size:.9rem}
+.q{display:flex;gap:6px;align-items:center}.t{font-weight:700;font-size:1.1rem;display:flex;justify-content:space-between}
+.ok{color:var(--ok);font-weight:600}.er{color:var(--er);font-weight:600}
+#mo{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:20;padding:16px}#mo.o{display:flex}
+#mo .box{width:min(380px,100%);max-height:90vh;overflow:auto}
+.tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}.lk{background:none;color:var(--ac);padding:0;text-decoration:underline;border:0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}td,th{border-bottom:1px solid var(--bd);padding:6px;text-align:left;vertical-align:top}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:end}
+footer{text-align:center;padding:20px;font-size:.8rem}footer a{color:var(--mu)}
+
+/* APP (check-in mobile) */
+#app{max-width:520px;margin-inline:auto;min-height:100vh}
+#app .hd{position:sticky;top:0;background:var(--ac);color:#fff;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+#app .hd h1{margin:0;font-size:1.15rem;color:#fff}#app .hd a{color:#fff;font-size:.85rem}
+#app main{padding:14px 14px calc(90px + env(safe-area-inset-bottom,0px))}
+#app .box{border-radius:14px;margin-bottom:12px}#app h3{margin:0 0 6px}#app p{margin:6px 0}.mu{color:var(--mu)}
+#app button{border-radius:12px;padding:14px;width:100%;font-weight:600;margin-top:6px}#app button.s{padding:14px}
+#app button.lk{width:auto;padding:6px 0;margin:0}#app input{font-size:16px;padding:12px}
+.code{font-size:3rem;letter-spacing:.35em;text-align:center;font-weight:800;padding:12px 0 12px .35em;color:var(--ok)}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center}.badge{font-size:.75rem;padding:3px 9px;border-radius:99px;border:1px solid var(--bd)}
+#app nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;display:flex;gap:0;flex-wrap:nowrap;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:6}
+#app nav button{flex:1;background:none;color:var(--mu);border-radius:0;margin:0;padding:10px 4px;font-size:.72rem;font-weight:500;width:auto;border:0}
+#app nav button span{display:block;font-size:1.4rem}#app nav button.on{color:var(--ac);font-weight:700}
+</style></head><body>
+<div id="site">
+<header><h1>🐟🛞 Mercado Virtual</h1>
+<nav><a href="#mercado" data-r="mercado">Mercado</a><a href="#salmao" data-r="salmao">🐟 Salmão</a><a href="#pneus" data-r="pneus">🛞 Pneus</a><a href="#app-checkin">📱 App</a></nav>
+<div class="hb"><button class="s" id="ab" onclick="acc()">👤 Entrar</button><button class="s" onclick="tg()">🛒 Carrinho (<span id="nq">0</span>)</button></div></header>
+
+<main id="m"></main>
+
+<main id="adm" hidden>
+<div id="alg" class="box" style="max-width:340px;margin:40px auto"><h2 style="margin-top:0">Administração</h2>
+<label>Utilizador</label><input id="au"><label>Palavra-passe</label><input id="ap" type="password" onkeydown="if(event.key=='Enter')aLogin()">
+<button onclick="aLogin()">Entrar</button><p id="am" class="er"></p></div>
+<div id="apn" hidden><div class="hb" style="justify-content:space-between;margin-bottom:10px"><div class="tabs"><button class="s" onclick="aT('p')">Produtos</button><button class="s" onclick="aT('o')">Encomendas</button><button class="s" onclick="aT('c')">Clientes</button><button class="s" onclick="aT('a')">Conta admin</button></div><button class="s" onclick="aOut()">Sair</button></div>
+<div id="awn" class="er"></div><div id="abd"></div></div>
+</main>
+<footer><a href="#admin">Administração</a></footer>
+
+<aside id="a"><div class="t"><span>O seu carrinho</span><button class="s" onclick="tg()">✕</button></div>
+<div id="li"></div><div class="t"><span>Total</span><span id="tt">0,00 €</span></div>
+<button onclick="ck()">Finalizar encomenda</button><div id="cm"></div></aside>
+
+<div id="mo"><div class="box">
+<div class="tabs"><button class="s" onclick="tab('l')">Entrar</button><button class="s" onclick="tab('r')">Registo</button></div>
+<div id="pl"><label>Email</label><input id="le" type="email"><label>Palavra-passe</label><input id="lp" type="password">
+<button onclick="lg()">Entrar</button> <button class="lk" onclick="tab('f')">Esqueci a palavra-passe</button></div>
+<div id="pr" hidden><label>Nome</label><input id="rn"><label>Email</label><input id="re" type="email"><label>Palavra-passe (mín. 6)</label><input id="rp" type="password"><button onclick="reg()">Criar conta</button></div>
+<div id="pf" hidden><label>Email da conta</label><input id="fe" type="email"><button onclick="fg()">Enviar código</button>
+<div id="fr" hidden><label>Código recebido</label><input id="fc"><label>Nova palavra-passe</label><input id="fn" type="password"><button onclick="fs()">Alterar palavra-passe</button></div></div>
+<div id="pc" hidden><div id="ci"></div><button class="s" onclick="out()">Terminar sessão</button></div>
+<p id="ms"></p><button class="lk" onclick="mo.classList.remove('o')">Fechar</button></div></div>
+</div>
+<div id="app" hidden>
+<div class="hd"><h1>📱 Check-in</h1><a href="#mercado">🌐 Site</a></div>
+<main id="xv"></main>
+<nav id="xnv"><button data-t="checkin" onclick="Xgo('checkin')"><span>📍</span>Check-in</button><button data-t="encomendas" onclick="Xgo('encomendas')"><span>📦</span>Encomendas</button><button data-t="conta" onclick="Xgo('conta')"><span>👤</span>Conta</button><button data-t="balcao" onclick="Xgo('balcao')"><span>🧾</span>Balcão</button></nav>
+</div>
+
+<script>
+const L=localStorage,G=(k,d)=>{try{return JSON.parse(L.getItem('mk_'+k))??d}catch{return d}},S=(k,v)=>L.setItem('mk_'+k,JSON.stringify(v));
+const eur=v=>v.toFixed(2).replace('.',',')+' €',esc=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+async function H(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('mk:'+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch{return'p:'+btoa(unescape(encodeURIComponent(s)))}}
+const SEED=[["salmao","Posta de salmão fresco","Fresco, 250 g, pescado na Noruega",6.9,"posta"],["salmao","Lombo de salmão","Sem pele e sem espinhas, 600 g",14.5,"lombo"],["salmao","Salmão fumado","Fatiado, curado a frio, 200 g",7.8,"emb."],["salmao","Salmão inteiro","Limpo e escamado, ~3 kg",39.9,"peça"],["salmao","Hambúrguer de salmão","Pack de 4 unidades congeladas",5.5,"pack"],["pneus","Pneu Verão 205/55 R16","Baixo consumo, travagem em molhado A",74.9,"un."],["pneus","Pneu Verão 225/45 R17","Desportivo, aderência elevada",96,"un."],["pneus","Pneu Inverno 195/65 R15","Marcação 3PMSF, ideal para serra",68.5,"un."],["pneus","Pneu All-Season 215/60 R16","Todo o ano, sem trocas sazonais",89.9,"un."],["pneus","Pneu 4x4 235/65 R17","Uso misto estrada/terra",121,"un."]];
+async function init(){if(!G('admin'))S('admin',{u:'admin',h:await H('admin')});if(!G('prods'))S('prods',SEED.map((x,i)=>({id:'p'+(i+1),cat:x[0],n:x[1],d:x[2],p:x[3],u:x[4],ativo:true})))}
+const CATS={salmao:{nome:'Salmão',e:'🐟'},pneus:{nome:'Pneus',e:'🛞'}};
+const cart={};let K=['salmao','pneus'];
+const user=()=>G('users',[]).find(u=>u.id==G('sess'));
+
+/* ---------- navegação ---------- */
+function route(){let h=location.hash.slice(1);const isApp=h.startsWith('app');site.hidden=isApp;app.hidden=!isApp;if(isApp){const t=h.slice(4);XT=XTABS.includes(t)?t:'checkin';document.title='Check-in – Mercado Virtual';return Xdraw()}if(!['mercado','salmao','pneus','admin'].includes(h))h='mercado';const ad=h=='admin';
+K=h=='salmao'?['salmao']:h=='pneus'?['pneus']:['salmao','pneus'];m.hidden=ad;adm.hidden=!ad;
+document.querySelectorAll('nav a[data-r]').forEach(x=>x.classList.toggle('on',x.dataset.r==h));
+document.title=ad?'Administração':'Mercado Virtual – '+({mercado:'Salmão e Pneus',salmao:'Salmão',pneus:'Pneus'})[h];
+if(ad){if(sessionStorage.mk_adm)aGo();else{alg.hidden=false;apn.hidden=true}}else render()}
+window.addEventListener('hashchange',route);
+
+/* ---------- loja ---------- */
+function render(){const P=G('prods',[]);m.innerHTML=K.map(k=>{const it=P.filter(p=>p.cat==k&&p.ativo!==false);return`<h2>${CATS[k].e} ${CATS[k].nome}</h2><div class="g">`+(it.map(i=>`<div class="c"><div class="e">${CATS[k].e}</div><h3>${esc(i.n)}</h3><p>${esc(i.d)}</p><div class="pr">${eur(i.p)} <small>/ ${esc(i.u)}</small></div><button onclick="ad('${i.id}')">Adicionar</button></div>`).join('')||'<p>Sem produtos.</p>')+'</div>'}).join('');hdr()}
+function hdr(){const u=user();ab.textContent=u?'👤 '+u.n.split(' ')[0]:'👤 Entrar'}
+function ad(id){const p=G('prods',[]).find(x=>x.id==id);cart[id]=cart[id]||{...p,q:0};cart[id].q++;r()}
+function ch(id,d){cart[id].q+=d;if(cart[id].q<=0)delete cart[id];r()}
+function r(){const v=Object.entries(cart);let t=0,n=0;li.innerHTML=v.length?v.map(([id,i])=>{t+=i.p*i.q;n+=i.q;return`<div class="l"><span>${esc(i.n)}</span><span class="q"><button class="s" onclick="ch('${id}',-1)">−</button>${i.q}<button class="s" onclick="ch('${id}',1)">+</button></span><b>${eur(i.p*i.q)}</b></div>`}).join(''):'<p>O carrinho está vazio.</p>';nq.textContent=n;tt.textContent=eur(t)}
+function tg(){a.classList.toggle('o')}
+function cmsg(t,c){cm.className=c?'ok':'er';cm.textContent=t}
+function ck(){const u=user(),it=Object.values(cart);if(!it.length)return cmsg('Adicione produtos primeiro.');if(!u){cmsg('Inicie sessão para finalizar.');return op('l')}
+const o=G('orders',[]),n={id:'E'+(1001+o.length),uid:u.id,nome:u.n,email:u.e,it:it.map(i=>({n:i.n,p:i.p,q:i.q})),t:it.reduce((s,i)=>s+i.p*i.q,0),s:'Pendente',k:String(Math.floor(1000+Math.random()*9000)),d:new Date().toISOString()};
+o.push(n);S('orders',o);for(const k in cart)delete cart[k];r();cmsg('✔ Encomenda '+n.id+' registada (código de levantamento '+n.k+'). Faça check-in na 📱 App ao chegar.',1)}
+
+/* ---------- contas de cliente ---------- */
+function msg(t,ok){ms.className=ok?'ok':'er';ms.textContent=t}
+function op(t){mo.classList.add('o');tab(t)}
+function tab(t){msg('');for(const x of['l','r','f','c'])document.getElementById('p'+x).hidden=x!=t}
+function acc(){const u=user();if(!u)return op('l');op('c');const os=G('orders',[]).filter(o=>o.uid==u.id).reverse();
+ci.innerHTML=`<p>Olá, <b>${esc(u.n)}</b> (${esc(u.e)})</p><h3>As minhas encomendas</h3>`+(os.map(o=>`<div class="l"><span>${o.id} · ${new Date(o.d).toLocaleDateString('pt-PT')}</span><span>${eur(o.t)} · ${esc(o.s)}</span></div>`).join('')||'<p>Ainda sem encomendas.</p>')}
+function out(){L.removeItem('mk_sess');mo.classList.remove('o');hdr()}
+async function reg(){const n=rn.value.trim(),e=re.value.trim().toLowerCase(),p=rp.value;
+if(!n||!/^\S+@\S+\.\S+$/.test(e))return msg('Indique um nome e um email válidos.');if(p.length<6)return msg('A palavra-passe precisa de pelo menos 6 caracteres.');
+const us=G('users',[]);if(us.some(u=>u.e==e))return msg('Este email já está registado.');
+const u={id:'u'+Date.now(),n,e,h:await H(p),d:new Date().toISOString()};us.push(u);S('users',us);S('sess',u.id);mo.classList.remove('o');hdr()}
+async function lg(){const e=le.value.trim().toLowerCase(),h=await H(lp.value),u=G('users',[]).find(u=>u.e==e&&u.h==h);if(!u)return msg('Email ou palavra-passe incorretos.');S('sess',u.id);mo.classList.remove('o');hdr()}
+function fg(){const e=fe.value.trim().toLowerCase();if(!G('users',[]).some(u=>u.e==e))return msg('Não existe conta com esse email.');
+const c=String(Math.floor(1e5+Math.random()*9e5));S('reset',{e,c,x:Date.now()+6e5});msg('Simulação de email — o seu código (válido 10 min): '+c,1);fr.hidden=false}
+async function fs(){const z=G('reset');if(!z||z.x<Date.now()||z.c!=fc.value.trim()||z.e!=fe.value.trim().toLowerCase())return msg('Código inválido ou expirado.');
+if(fn.value.length<6)return msg('A palavra-passe precisa de pelo menos 6 caracteres.');const us=G('users',[]);us.find(u=>u.e==z.e).h=await H(fn.value);S('users',us);L.removeItem('mk_reset');tab('l');msg('Palavra-passe alterada. Já pode entrar.',1)}
+
+/* ---------- administração ---------- */
+let ed=null;const ES=['Pendente','Paga','Check-in','Enviada','Entregue','Cancelada'];
+async function aLogin(){const x=G('admin');if(au.value.trim()==x.u&&await H(ap.value)==x.h){sessionStorage.mk_adm=1;aGo()}else am.textContent='Credenciais inválidas.'}
+async function aGo(){alg.hidden=true;apn.hidden=false;awn.textContent=G('admin').h==await H('admin')?'⚠ Ainda está a usar a palavra-passe por defeito (admin). Altere-a em "Conta admin".':'';aT('p')}
+function aOut(){sessionStorage.removeItem('mk_adm');ap.value='';route()}
+function aT(t){({p:aProd,o:aOrd,c:aCli,a:aAcc})[t]()}
+function aProd(){const P=G('prods',[]),e=P.find(x=>x.id==ed)||{cat:'salmao',n:'',d:'',p:'',u:'',ativo:true};
+abd.innerHTML=`<div class="box"><h3 style="margin-top:0">${ed?'Editar':'Novo'} produto</h3><div class="f">
+<div><label>Categoria</label><select id="fcat">${Object.keys(CATS).map(k=>`<option value="${k}" ${e.cat==k?'selected':''}>${CATS[k].nome}</option>`).join('')}</select></div>
+<div><label>Nome</label><input id="fnm" value="${esc(e.n)}"></div><div><label>Descrição</label><input id="fds" value="${esc(e.d)}"></div>
+<div><label>Preço (€)</label><input id="fpr" type="number" step="0.01" min="0" value="${e.p}"></div><div><label>Unidade</label><input id="fun" value="${esc(e.u)}"></div>
+<div><label><input type="checkbox" id="fvis" style="width:auto" ${e.ativo!==false?'checked':''}> Visível na loja</label></div></div>
+<p><button onclick="aSave()">Guardar</button> ${ed?'<button class="s" onclick="ed=null;aProd()">Cancelar</button>':''}</p></div>
+<div class="box" style="margin-top:12px;overflow:auto"><table><tr><th>Cat.</th><th>Nome</th><th>Preço</th><th>Visível</th><th></th></tr>`+
+P.map(p=>`<tr><td>${CATS[p.cat].e}</td><td>${esc(p.n)}</td><td>${eur(p.p)}/${esc(p.u)}</td><td>${p.ativo!==false?'Sim':'Não'}</td><td><button class="s" onclick="ed='${p.id}';aProd()">Editar</button> <button class="d" onclick="aDelP('${p.id}')">Apagar</button></td></tr>`).join('')+'</table></div>'}
+function aSave(){const n=fnm.value.trim(),p=parseFloat(fpr.value);if(!n||!(p>=0))return alert('Nome e preço válidos são obrigatórios.');
+const P=G('prods',[]),o={cat:fcat.value,n,d:fds.value.trim(),p,u:fun.value.trim()||'un.',ativo:fvis.checked};
+if(ed)Object.assign(P.find(x=>x.id==ed),o);else P.push({id:'p'+Date.now(),...o});S('prods',P);ed=null;aProd()}
+function aDelP(id){if(confirm('Apagar este produto?')){S('prods',G('prods',[]).filter(p=>p.id!=id));aProd()}}
+function aOrd(){const O=G('orders',[]).slice().reverse(),f=d=>new Date(d).toLocaleString('pt-PT',{dateStyle:'short',timeStyle:'short'});
+abd.innerHTML='<div class="box" style="overflow:auto"><table><tr><th>Nº</th><th>Cliente</th><th>Artigos</th><th>Total</th><th>Estado</th></tr>'+
+(O.map(o=>`<tr><td>${o.id}<br><small>${new Date(o.d).toLocaleDateString('pt-PT')}</small><br><small>Cód. ${o.k||'—'}</small></td><td>${esc(o.nome)}<br><small>${esc(o.email)}</small></td><td>${o.it.map(i=>i.q+'× '+esc(i.n)).join('<br>')}</td><td>${eur(o.t)}</td><td><select onchange="aSt('${o.id}',this.value)">${ES.map(s=>`<option ${s==o.s?'selected':''}>${s}</option>`).join('')}</select>${o.ci?`<br><small class="ok">📍 check-in ${f(o.ci)}</small>`:''}</td></tr>`).join('')||'<tr><td colspan="5">Sem encomendas.</td></tr>')+'</table></div>'}
+function aSt(id,v){const O=G('orders',[]);O.find(o=>o.id==id).s=v;S('orders',O)}
+function aCli(){const U=G('users',[]),O=G('orders',[]);abd.innerHTML='<div class="box" style="overflow:auto"><table><tr><th>Nome</th><th>Email</th><th>Registo</th><th>Enc.</th><th></th></tr>'+
+(U.map(u=>`<tr><td>${esc(u.n)}</td><td>${esc(u.e)}</td><td>${new Date(u.d).toLocaleDateString('pt-PT')}</td><td>${O.filter(o=>o.uid==u.id).length}</td><td><button class="s" onclick="aReset('${u.id}')">Repor passe</button> <button class="d" onclick="aDelU('${u.id}')">Apagar</button></td></tr>`).join('')||'<tr><td colspan="5">Sem clientes.</td></tr>')+'</table></div>'}
+async function aReset(id){const p=prompt('Nova palavra-passe para o cliente (mín. 6):');if(!p||p.length<6)return;const U=G('users',[]);U.find(u=>u.id==id).h=await H(p);S('users',U);alert('Palavra-passe alterada.')}
+function aDelU(id){if(confirm('Apagar este cliente?')){S('users',G('users',[]).filter(u=>u.id!=id));aCli()}}
+function aAcc(){abd.innerHTML=`<div class="box" style="max-width:340px"><h3 style="margin-top:0">Alterar credenciais</h3><label>Novo utilizador</label><input id="anu" value="${esc(G('admin').u)}"><label>Palavra-passe atual</label><input id="aoa" type="password"><label>Nova palavra-passe (mín. 6)</label><input id="ana" type="password"><button onclick="aChange()">Guardar</button><p id="acm" class="er"></p></div>`}
+async function aChange(){const x=G('admin');if(await H(aoa.value)!=x.h)return acm.textContent='Palavra-passe atual incorreta.';if(ana.value.length<6||!anu.value.trim())return acm.textContent='Dados inválidos.';
+S('admin',{u:anu.value.trim(),h:await H(ana.value)});acm.className='ok';acm.textContent='Credenciais alteradas.';awn.textContent=''}
+
+const $=id=>document.getElementById(id);
+const fmt=d=>new Date(d).toLocaleString('pt-PT',{dateStyle:'short',timeStyle:'short'});
+
+/* ---------- APP: check-in mobile ---------- */
+const XTABS=['checkin','encomendas','conta','balcao'];
+let XT='checkin',Xsub='l',XM='',XMO=0,Xfem='';
+const Xnote=(t,ok)=>{XM=t;XMO=ok};
+const Xmhtml=()=>XM?`<p class="${XMO?'ok':'er'}">${esc(XM)}</p>`:'';
+function Xgo(t){XT=t;XM='';if(location.hash.slice(1)!='app-'+t)location.hash='app-'+t;else Xdraw()}
+function Xdraw(){document.querySelectorAll('#xnv button').forEach(b=>b.classList.toggle('on',b.dataset.t==XT));xv.innerHTML=Xmhtml()+({checkin:XvCheck,encomendas:XvOrd,conta:XvAcc,balcao:XvDesk})[XT]();XM=''}
+const Xmine=()=>G('orders',[]).filter(o=>o.uid==user().id).reverse();
+const Xitems=o=>o.it.map(i=>i.q+'× '+esc(i.n)).join(', ');
+const Xneed=()=>`<div class="box"><p>Inicie sessão para continuar.</p><button onclick="Xgo('conta')">Entrar / Registar</button></div>`;
+
+/* Check-in */
+function XvCheck(){if(!user())return Xneed();const os=Xmine().filter(o=>['Pendente','Paga','Check-in'].includes(o.s));
+if(!os.length)return`<div class="box"><h3>Sem encomendas para levantar</h3><p class="mu">Faça uma encomenda na loja e volte aqui quando chegar.</p><a href="mercado.html"><button>Ir para a loja</button></a></div>`;
+return os.map(o=>`<div class="box"><div class="row"><h3>${o.id}</h3><span class="badge">${esc(o.s)}</span></div><p class="mu">${Xitems(o)}</p><p><b>${eur(o.t)}</b></p>`+
+(o.s=='Check-in'?`<p class="ok">✔ Check-in feito às ${fmt(o.ci)}</p><p class="mu">Mostre este código no balcão:</p><div class="code">${o.k}</div>`:`<button onclick="Xci('${o.id}')">📍 Cheguei — fazer check-in</button>`)+'</div>').join('')}
+function Xci(id){const O=G('orders',[]),o=O.find(x=>x.id==id);o.s='Check-in';o.ci=new Date().toISOString();o.k=o.k||String(Math.floor(1000+Math.random()*9000));S('orders',O);Xnote('Check-in feito! O balcão já sabe que chegou.',1);Xdraw()}
+
+/* Encomendas */
+function XvOrd(){if(!user())return Xneed();const os=Xmine();return os.length?os.map(o=>`<div class="box"><div class="row"><b>${o.id}</b><span class="badge">${esc(o.s)}</span></div><p class="mu">${fmt(o.d)}</p><p>${Xitems(o)}</p><b>${eur(o.t)}</b></div>`).join(''):'<div class="box"><p>Ainda sem encomendas.</p></div>'}
+
+/* Conta */
+function XvAcc(){const u=user();if(u)return`<div class="box"><h3>Olá, ${esc(u.n)}</h3><p class="mu">${esc(u.e)}</p><button class="s" onclick="Xlogout()">Terminar sessão</button></div>`;
+const tabs=`<div class="row" style="margin-bottom:8px"><button class="s" onclick="Xsub='l';Xdraw()">Entrar</button><button class="s" onclick="Xsub='r';Xdraw()">Registo</button></div>`;
+if(Xsub=='r')return`<div class="box">${tabs}<label>Nome</label><input id="xrn"><label>Email</label><input id="xre" type="email"><label>Palavra-passe (mín. 6)</label><input id="xrp" type="password"><button onclick="Xreg()">Criar conta</button></div>`;
+if(Xsub=='f')return`<div class="box">${tabs}<label>Email da conta</label><input id="xfe" type="email"><button onclick="Xfg()">Enviar código</button></div>`;
+if(Xsub=='f2')return`<div class="box">${tabs}<label>Código recebido</label><input id="xfc" inputmode="numeric"><label>Nova palavra-passe</label><input id="xfn" type="password"><button onclick="Xfs()">Alterar palavra-passe</button></div>`;
+return`<div class="box">${tabs}<label>Email</label><input id="xle" type="email"><label>Palavra-passe</label><input id="xlp" type="password"><button onclick="Xlg()">Entrar</button><button class="lk" onclick="Xsub='f';Xdraw()">Esqueci a palavra-passe</button></div>`}
+function Xlogout(){L.removeItem('mk_sess');Xdraw()}
+async function Xreg(){const n=$('xrn').value.trim(),e=$('xre').value.trim().toLowerCase(),p=$('xrp').value;
+if(!n||!/^\S+@\S+\.\S+$/.test(e))return Xnote('Indique um nome e um email válidos.'),Xdraw();if(p.length<6)return Xnote('A palavra-passe precisa de pelo menos 6 caracteres.'),Xdraw();
+const us=G('users',[]);if(us.some(u=>u.e==e))return Xnote('Este email já está registado.'),Xdraw();
+const u={id:'u'+Date.now(),n,e,h:await H(p),d:new Date().toISOString()};us.push(u);S('users',us);S('sess',u.id);Xgo('checkin')}
+async function Xlg(){const e=$('xle').value.trim().toLowerCase(),h=await H($('xlp').value),u=G('users',[]).find(u=>u.e==e&&u.h==h);if(!u)return Xnote('Email ou palavra-passe incorretos.'),Xdraw();S('sess',u.id);Xgo('checkin')}
+function Xfg(){const e=$('xfe').value.trim().toLowerCase();if(!G('users',[]).some(u=>u.e==e))return Xnote('Não existe conta com esse email.'),Xdraw();
+const c=String(Math.floor(1e5+Math.random()*9e5));S('reset',{e,c,x:Date.now()+6e5});Xfem=e;Xsub='f2';Xnote('Simulação de email — o seu código (válido 10 min): '+c,1);Xdraw()}
+async function Xfs(){const z=G('reset');if(!z||z.x<Date.now()||z.c!=$('xfc').value.trim()||z.e!=Xfem)return Xnote('Código inválido ou expirado.'),Xdraw();
+if($('xfn').value.length<6)return Xnote('A palavra-passe precisa de pelo menos 6 caracteres.'),Xdraw();const us=G('users',[]);us.find(u=>u.e==z.e).h=await H($('xfn').value);S('users',us);L.removeItem('mk_reset');Xsub='l';Xnote('Palavra-passe alterada. Já pode entrar.',1);Xdraw()}
+
+/* Balcão (funcionários) */
+function XvDesk(){if(!(sessionStorage.mk_stf||sessionStorage.mk_adm))return`<div class="box"><h3>Balcão</h3><p class="mu">Acesso para funcionários (credenciais de administrador).</p><label>Utilizador</label><input id="xsu"><label>Palavra-passe</label><input id="xsp" type="password"><button onclick="Xsl()">Entrar</button></div>`;
+const O=G('orders',[]).filter(o=>o.s=='Check-in').sort((a,b)=>a.ci<b.ci?-1:1);
+return`<div class="box"><label>Procurar por código</label><input id="xsc" inputmode="numeric" maxlength="4" placeholder="1234" oninput="Xsf()"><div id="xsr"></div></div><h3>À espera (${O.length})</h3>`+
+(O.map(Xdk).join('')||'<div class="box"><p class="mu">Ninguém em check-in.</p></div>')+`<button class="s" onclick="delete sessionStorage.mk_stf;delete sessionStorage.mk_adm;Xdraw()">Sair do balcão</button>`}
+const Xdk=o=>`<div class="box"><div class="row"><b>${o.id} · ${esc(o.nome)}</b><span class="badge">Cód. ${o.k}</span></div><p class="mu">${Xitems(o)}</p><p class="mu">Chegou às ${fmt(o.ci)}</p><button onclick="Xdv('${o.id}')">Entregar</button></div>`;
+async function Xsl(){const a=G('admin');if(!a)return Xnote('Abra primeiro o mercado.html para criar a conta de administrador.'),Xdraw();
+if($('xsu').value.trim()==a.u&&await H($('xsp').value)==a.h){sessionStorage.mk_stf=1;Xdraw()}else{Xnote('Credenciais inválidas.');Xdraw()}}
+function Xsf(){const c=$('xsc').value.trim(),o=c.length==4&&G('orders',[]).find(x=>x.k==c&&x.s=='Check-in');$('xsr').innerHTML=c.length<4?'':o?Xdk(o):'<p class="er">Nenhum check-in com esse código.</p>'}
+function Xdv(id){const O=G('orders',[]);const o=O.find(x=>x.id==id);o.s='Entregue';o.dl=new Date().toISOString();S('orders',O);Xnote('Encomenda '+id+' entregue.',1);Xdraw()}
+
+
+init().then(()=>{r();route()});
+</script></body></html>
